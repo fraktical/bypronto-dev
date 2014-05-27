@@ -20,9 +20,22 @@ if [[ ! -d "/srv/www/wordpress-test" ]]; then
 fi
 
 mv /srv/www/bypronto/ /srv/www/wordpress-test/
-wp core config --dbname="bypronto" --dbuser=root --dbpass=root --dbhost="localhost" --allow-root --path=/srv/www/wordpress-test/bypronto/
+
+# Generate the wp-config file
+wp core config --dbname="bypronto" --dbuser=root --dbpass=root --dbhost="localhost" --allow-root --path=/srv/www/wordpress-test/bypronto/ --extra-php <<PHP
+define( 'WP_DEBUG', true );
+define( 'WP_DEBUG_LOG', true );
+define( 'SAVEQUERIES', true );
+define( 'DEVBAR_NOTIFY', true );
+PHP
+
+# Install multisite
 wp core multisite-install --url=local.bypronto.dev --subdomains --title="Bypronto" --admin_user=admin --admin_password=password --admin_email=admin@pronto.com --allow-root --path=/srv/www/wordpress-test/bypronto/
 wp theme activate phoenix-child --path=/srv/www/wordpress-test/bypronto/
+
+# Install plugins
+wp plugin install debug-bar --activate --path=/srv/www/wordpress-test/bypronto/
+wp plugin install log-deprecated-notices --activate --path=/srv/www/wordpress-test/bypronto/
 
 ## The Vagrant site setup script will restart Nginx for us
 
