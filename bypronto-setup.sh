@@ -6,4 +6,3 @@ cp wp-tests-config.php vvv-bypronto/www/
 git clone git@github.com:prontodev/bypronto.git vvv-bypronto/www/bypronto
 mv vvv-bypronto ..
 cd ../vvv-bypronto/
-vagrant up
