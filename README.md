@@ -6,11 +6,7 @@ Vagrant development for Bypronto based on VVV
 Getting Started
 ---------------
 
-Just run `sh bypronto-setup.sh`. This script creates a new folder called `vvv-bypronto` outside this repository. We can do our development there.
-
-Vagrant Plugins to Install
---------------------------
-
-Run the following commands:
-* `vagrant plugin install vagrant-hostsupdater`
-* `vagrant plugin install vagrant-triggers`
+1. Install Vagrant plugins. Run the following commands:
+  1. `vagrant plugin install vagrant-hostsupdater`
+  2. `vagrant plugin install vagrant-triggers`
+2. Run `sh bypronto-setup.sh`. This script creates a new folder called `vvv-bypronto` outside this repository. We can do our development there.
