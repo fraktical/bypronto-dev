@@ -10,5 +10,5 @@ Getting Started
   1. `vagrant plugin install vagrant-hostsupdater`
   2. `vagrant plugin install vagrant-triggers`
 2. Run `sh bypronto-setup.sh`. 
-3. The script above creates a new folder called `vvv-bypronto` outside this repository. We can do our development there.
-4. Happy coding!
+3. The script above creates a new folder called `vvv-bypronto` outside this repository. We will go and do our development there.
+4. Under the folder `vvv-bypronto`, run `vagrant up`. This will take time to finish up.
