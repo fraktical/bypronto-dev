@@ -12,6 +12,7 @@ Getting Started
 2. Run `sh bypronto-setup.sh`. 
 3. The script above creates a new folder called `vvv-bypronto` outside this repository. We will go and do our development there.
 4. Under the folder `vvv-bypronto`, run `vagrant up`. This will take time to finish up.
+5. After the process is complete, go to the folder `vvv-bypronto/www/wordpress-develop/bypronto` and run `git reset --hard HEAD`.
 
 Running WordPress Unit Tests on VVV
 -----------------------------------
