@@ -5,3 +5,6 @@ cp vvv-nginx.conf vvv-bypronto/www/
 cp wp-tests-config.php vvv-bypronto/www/
 git clone git@github.com:prontodev/bypronto.git vvv-bypronto/www/bypronto
 mv vvv-bypronto ..
+
+echo "The folder 'vvv-bypronto' is created outside this folder."
+echo "Go to that folder and run 'vagrant up'."
