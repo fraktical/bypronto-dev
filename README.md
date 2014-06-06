@@ -6,7 +6,7 @@ Vagrant development for Bypronto based on VVV
 Getting Started
 ---------------
 
-0. Clone git@github.com:prontodev/bypronto-dev.git and go to bypronto-dev directory
+0. Clone `git@github.com:prontodev/bypronto-dev.git` and go to bypronto-dev directory
 1. Install Vagrant plugins. Run the following commands:
   1. `vagrant plugin install vagrant-hostsupdater`
   2. `vagrant plugin install vagrant-triggers`
