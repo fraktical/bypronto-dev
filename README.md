@@ -7,7 +7,7 @@ Getting Started
 ---------------
 
 0. Clone `git@github.com:prontodev/bypronto-dev.git` and go to bypronto-dev directory
-1. Install Vagrant plugins. Run the following commands:
+1. Install Vagrant plugins. Run the following commands: (make sure you already upgraded Vagrant to the latest version)
   1. `vagrant plugin install vagrant-hostsupdater`
   2. `vagrant plugin install vagrant-triggers`
 2. Run `sh bypronto-setup.sh`. 
