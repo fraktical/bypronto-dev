@@ -16,7 +16,7 @@ mysql -u root --password=root -e "CREATE DATABASE IF NOT EXISTS bypronto_test"
 mysql -u root --password=root -e "GRANT ALL PRIVILEGES ON bypronto_test.* TO wp@localhost IDENTIFIED BY 'wp';"
 
 cp /srv/www/wp-tests-config.php /srv/www/wordpress-develop/
-cp -R /srv/www/bypronto/ /srv/www/wordpress-develop/
+mv /srv/www/bypronto /srv/www/wordpress-develop/
 
 # Generate the wp-config file
 wp core config --dbname="bypronto" --dbuser=root --dbpass=root --dbhost="localhost" --allow-root --path=/srv/www/wordpress-develop/bypronto/ --extra-php <<PHP
