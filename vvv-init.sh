@@ -16,6 +16,7 @@ mysql -u root --password=root -e "CREATE DATABASE IF NOT EXISTS bypronto_test"
 mysql -u root --password=root -e "GRANT ALL PRIVILEGES ON bypronto_test.* TO wp@localhost IDENTIFIED BY 'wp';"
 
 cp /srv/www/wp-tests-config.php /srv/www/wordpress-develop/
+cp /srv/www/bootstrap.php /srv/www/wordpress-develop/tests/phpunit/includes/
 mv /srv/www/bypronto /srv/www/wordpress-develop/
 
 # Generate the wp-config file
@@ -38,6 +39,13 @@ wp plugin install log-deprecated-notices --activate --allow-root --path=/srv/www
 # Enable Object Cache on Bypronto.
 echo "Enable Object Cache on Bypronto"
 ln -s /srv/www/wordpress-develop/bypronto/conf/object-cache.php /srv/www/wordpress-develop/bypronto/wp-content/
+
+# Install WP Mock
+echo "Install WP Mock on Bypronto"
+composer require --dev 10up/wp_mock:dev-master
+mv composer.json /srv/www/wordpress-develop/bypronto/
+mv composer.lock /srv/www/wordpress-develop/bypronto/
+mv vendor /srv/www/wordpress-develop/bypronto/
 
 ## The Vagrant site setup script will restart Nginx for us
 
