@@ -1,7 +1,15 @@
 # Init script for WordPress trunk site
 
 # Install required packages
-apt-get install curl libcurl3 libcurl3-dev php5-curl
+apt-get -y install curl libcurl3 libcurl3-dev php5-curl
+
+# Install HHVM
+sudo apt-get -y install libgmp-dev libmemcached-dev
+
+wget -O - http://dl.hhvm.com/conf/hhvm.gpg.key | sudo apt-key add -
+echo deb http://dl.hhvm.com/ubuntu trusty main | sudo tee /etc/apt/sources.list.d/hhvm.list
+sudo apt-get update
+sudo apt-get -y install hhvm
 
 echo "Commencing Bypronto Setup"
 
