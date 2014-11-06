@@ -19,8 +19,8 @@ sudo service hhvm restart
 
 echo "Copying NGINX WordPress subdirectory configuration"
 cd /
-sudo cp /srv/www/__hhvvvm/nginx-wp-with-hhvm.conf-sample /etc/nginx/nginx-wp-with-hhvm.conf
-echo " * /srv/www/__hhvvvm/nginx-wp-with-hhvm.conf -> /etc/nginx/nginx-wp-with-hhvm.conf"
+sudo cp /srv/www/nginx-wp-with-hhvm.conf-sample /etc/nginx/nginx-wp-with-hhvm.conf
+echo " * /srv/www/nginx-wp-with-hhvm.conf -> /etc/nginx/nginx-wp-with-hhvm.conf"
 
 echo "Commencing Bypronto Setup"
 
