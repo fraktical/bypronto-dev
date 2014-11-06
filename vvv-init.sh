@@ -4,12 +4,23 @@
 apt-get -y install curl libcurl3 libcurl3-dev php5-curl
 
 # Install HHVM
-sudo apt-get -y install libgmp-dev libmemcached-dev
-
-wget -O - http://dl.hhvm.com/conf/hhvm.gpg.key | sudo apt-key add -
+echo "Setup the HHVM repository"
+sudo wget -O - http://dl.hhvm.com/conf/hhvm.gpg.key | sudo apt-key add -
 echo deb http://dl.hhvm.com/ubuntu trusty main | sudo tee /etc/apt/sources.list.d/hhvm.list
 sudo apt-get update
-sudo apt-get -y install hhvm
+sudo apt-get install hhvm -y --force-yes
+sudo update-rc.d hhvm defaults
+sudo apt-get -y install libgmp-dev libmemcached-dev
+
+# Restart NGINX and HHVM
+echo "Restart nginx to apply HHVM changes"
+sudo service nginx restart
+sudo service hhvm restart
+
+echo "Copying NGINX WordPress subdirectory configuration"
+cd /
+sudo cp /srv/www/__hhvvvm/nginx-wp-with-hhvm.conf-sample /etc/nginx/nginx-wp-with-hhvm.conf
+echo " * /srv/www/__hhvvvm/nginx-wp-with-hhvm.conf -> /etc/nginx/nginx-wp-with-hhvm.conf"
 
 echo "Commencing Bypronto Setup"
 
