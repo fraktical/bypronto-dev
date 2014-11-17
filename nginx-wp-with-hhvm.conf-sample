@@ -69,7 +69,15 @@ location ~ \.php$ {
     #fastcgi_pass   php;
 
     # Use the upstream for HHVM that we installed via vvv-init.sh
-    fastcgi_pass   127.0.0.1:9000;
+    #fastcgi_pass   127.0.0.1:9000;
+
+    # Use PHP-FPM only for Pronto Cache
+    if ( $args ~ 'jc-get-instance' ) {
+        fastcgi_pass php;
+    }
+    if ( $args !~ 'jc-get-instance' ) {
+        fastcgi_pass 127.0.0.1:9000;
+    }
 
     # And get to serving the file!
     fastcgi_index  index.php;
