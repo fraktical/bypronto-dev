@@ -34,12 +34,13 @@ echo "Creating Bypronto database for test (if it's not already there)"
 mysql -u root --password=root -e "CREATE DATABASE IF NOT EXISTS bypronto_test"
 mysql -u root --password=root -e "GRANT ALL PRIVILEGES ON bypronto_test.* TO wp@localhost IDENTIFIED BY 'wp';"
 
-cp /srv/www/wp-tests-config.php /srv/www/wordpress-develop/
-cp /srv/www/bootstrap.php /srv/www/wordpress-develop/tests/phpunit/includes/
-mv /srv/www/bypronto /srv/www/wordpress-develop/
+cp /srv/www/wp-tests-config.php /srv/www/wordpress-develop/web/
+cp /srv/www/bootstrap.php /srv/www/wordpress-develop/web/tests/phpunit/includes/
+rm -f /srv/www/wordpress-develop/
+ln -sf /srv/www/bypronto /srv/www/wordpress-develop/
 
 # Generate the wp-config file
-wp core config --dbname="bypronto" --dbuser=root --dbpass=root --dbhost="localhost" --allow-root --path=/srv/www/wordpress-develop/bypronto/ --extra-php <<PHP
+wp core config --dbname="bypronto" --dbuser=root --dbpass=root --dbhost="localhost" --allow-root --path=/srv/www/wordpress-develop/web/ --extra-php <<PHP
 \$memcached_servers = array( 'default' => array( '127.0.0.1:11211' ) );
 define( 'WP_DEBUG', true );
 define( 'WP_DEBUG_LOG', true );
@@ -48,23 +49,23 @@ define( 'DEVBAR_NOTIFY', true );
 PHP
 
 # Install multisite
-wp core multisite-install --url=local.bypronto.dev --subdomains --title="Phoenix Test" --admin_user=admin --admin_password=password --admin_email=admin@pronto.com --allow-root --path=/srv/www/wordpress-develop/bypronto/
-wp theme activate phoenix-child --allow-root --path=/srv/www/wordpress-develop/bypronto/
+wp core multisite-install --url=local.bypronto.dev --subdomains --title="Phoenix Test" --admin_user=admin --admin_password=password --admin_email=admin@pronto.com --allow-root --path=/srv/www/wordpress-develop/web/
+wp theme activate phoenix-child --allow-root --path=/srv/www/wordpress-develop/web/
 
 # Install plugins
-wp plugin install debug-bar --activate --allow-root --path=/srv/www/wordpress-develop/bypronto/
-wp plugin install log-deprecated-notices --activate --allow-root --path=/srv/www/wordpress-develop/bypronto/
+wp plugin install debug-bar --activate --allow-root --path=/srv/www/wordpress-develop/web
+wp plugin install log-deprecated-notices --activate --allow-root --path=/srv/www/wordpress-develop/web/
 
 # Enable Object Cache on Bypronto.
 echo "Enable Object Cache on Bypronto"
-ln -s /srv/www/wordpress-develop/bypronto/conf/object-cache.php /srv/www/wordpress-develop/bypronto/wp-content/
+ln -s /srv/www/wordpress-develop/conf/object-cache.php /srv/www/wordpress-develop/web/wp-content/
 
 # Install WP Mock
 echo "Install WP Mock on Bypronto"
 composer require --dev 10up/wp_mock:dev-master
-mv composer.json /srv/www/wordpress-develop/bypronto/
-mv composer.lock /srv/www/wordpress-develop/bypronto/
-mv vendor /srv/www/wordpress-develop/bypronto/
+mv composer.json /srv/www/wordpress-develop/web/
+mv composer.lock /srv/www/wordpress-develop/web/
+mv vendor /srv/www/wordpress-develop/web/
 
 ## The Vagrant site setup script will restart Nginx for us
 
