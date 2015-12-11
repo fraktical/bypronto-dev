@@ -34,6 +34,10 @@ echo "Creating Bypronto database for test (if it's not already there)"
 mysql -u root --password=root -e "CREATE DATABASE IF NOT EXISTS bypronto_test"
 mysql -u root --password=root -e "GRANT ALL PRIVILEGES ON bypronto_test.* TO wp@localhost IDENTIFIED BY 'wp';"
 
+rm -rf /srv/www/wordpress-develop/
+ln -sf /srv/www/bypronto /srv/www/wordpress-develop
+cp /srv/www/wp-tests-config.php /srv/www/wordpress-develop/web/
+cp /srv/www/bootstrap.php /srv/www/wordpress-develop/tests/phpunit/includes/
 
 # Generate the wp-config file
 wp core config --dbname="bypronto" --dbuser=root --dbpass=root --dbhost="localhost" --allow-root --path=/srv/www/wordpress-develop/web/ --extra-php <<PHP
@@ -62,11 +66,6 @@ composer require --dev 10up/wp_mock:dev-master
 mv composer.json /srv/www/wordpress-develop/web/
 mv composer.lock /srv/www/wordpress-develop/web/
 mv vendor /srv/www/wordpress-develop/web/
-
-rm -f /srv/www/wordpress-develop/
-ln -sf /srv/www/bypronto /srv/www/wordpress-develop/
-cp /srv/www/wp-tests-config.php /srv/www/wordpress-develop/web/
-cp /srv/www/bootstrap.php /srv/www/wordpress-develop/web/tests/phpunit/includes/
 
 ## The Vagrant site setup script will restart Nginx for us
 
