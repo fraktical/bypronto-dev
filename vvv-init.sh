@@ -67,7 +67,6 @@ mv vendor /srv/www/wordpress-develop/web/
 
 rm -f /srv/www/wordpress-develop/
 ln -sf /srv/www/bypronto /srv/www/wordpress-develop/
-ln -sf /srv/www/bypronto/conf/wp-config.php.local /srv/www/bypronto/web/wp-config.php
 
 ## The Vagrant site setup script will restart Nginx for us
 
