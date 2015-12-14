@@ -34,7 +34,7 @@ echo "Creating Bypronto database for test (if it's not already there)"
 mysql -u root --password=root -e "CREATE DATABASE IF NOT EXISTS bypronto_test"
 mysql -u root --password=root -e "GRANT ALL PRIVILEGES ON bypronto_test.* TO wp@localhost IDENTIFIED BY 'wp';"
 
-cp /srv/www/wp-tests-config.php /srv/www/bypronto/web/
+cp /srv/www/wp-tests-config.php /srv/www/bypronto/
 cp /srv/www/bootstrap.php /srv/www/bypronto/tests/phpunit/includes/
 
 # Generate the wp-config file
