@@ -13,7 +13,18 @@ Getting Started
 2. Run `sh bypronto-setup.sh`. 
 3. The script above creates a new folder called `vvv-bypronto` outside this repository. We will go and do our development there.
 4. Under the folder `vvv-bypronto`, run `vagrant up`. This will take time to finish up.
-5. After the process is complete, go to the folder `vvv-bypronto/www/wordpress-develop/web` and run `git reset --hard HEAD`.
+5. `vagrant ssh`
+6. `rm -rf /srv/www/bypronto/web/wp-content/plugins/jetpack`
+7. `mv /srv/www/wordpress-develop /srv/www/wordpress-develop-backup`
+8. `ln -s /srv/www/bypronto /srv/www/wordpress-develop`
+
+To solve Jetpack's issue on local for now, given we already removed Jetpack from the instruction above, follow these steps:
+
+1. On Vagrant, run `wp theme activate twentyfifteen --allow-root --path=/srv/www/bypronto/web/`.
+2. On Local, run `git reset --hard HEAD` in order to bring Jetpack back.
+3. Go to the plugin page then activate Jetpack.
+4. On Vagrant, run `wp theme activate phoenix-child --allow-root --path=/srv/www/bypronto/web/`.
+5. The `local.bypronto.dev` should work with Phoenix theme now.
 
 Running WordPress Unit Tests on VVV
 -----------------------------------
