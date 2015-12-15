@@ -21,7 +21,7 @@ Getting Started
 To solve Jetpack's issue on local for now, given we already removed Jetpack from the instruction above, follow these steps:
 
 1. On Vagrant, run `wp theme activate twentyfifteen --allow-root --path=/srv/www/bypronto/web/`.
-2. On Local, run `git reset --hard HEAD` in order to bring Jetpack back.
+2. On Local (under `bypronto` folder inside VVV), run `git reset --hard HEAD` in order to bring Jetpack back.
 3. Go to the plugin page then activate Jetpack.
 4. On Vagrant, run `wp theme activate phoenix-child --allow-root --path=/srv/www/bypronto/web/`.
 5. The `local.bypronto.dev` should work with Phoenix theme now.
