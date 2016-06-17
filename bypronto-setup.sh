@@ -1,4 +1,4 @@
-git clone git://github.com/Varying-Vagrant-Vagrants/VVV.git vvv-bypronto
+git clone -b '1.3.0' git://github.com/Varying-Vagrant-Vagrants/VVV.git vvv-bypronto
 cp vvv-hosts vvv-bypronto/www/
 cp vvv-init.sh vvv-bypronto/www/
 cp vvv-nginx.conf vvv-bypronto/www/
